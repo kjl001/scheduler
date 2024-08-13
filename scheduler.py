@@ -6,9 +6,18 @@
 # Have different date inputs like 8-9-24 or 08-09-2024 or Aug 9, 2024
 ################################################
 
-option = input("Do you want to [1] ADD a task or [2] VIEW a task?: ").strip().lower()
-match option:
-    case '1' | 'add':
-        import add
-    case '2' | 'view':
-        import view
+import add as a
+import view as v
+
+while True:
+    option = input("Do you want to [1] ADD a task; [2] VIEW a task; [3] REMOVE a task; [4] EXIT?: ").strip().lower()
+    match option:
+        case '1' | 'add':
+            a.add_task()
+        case '2' | 'view':
+            v.view_task()
+        case '3' | 'remove':
+            print("REMOVE")
+        case '4' | 'exit':
+            print("Exiting...")
+            exit()

@@ -20,30 +20,31 @@ def convert_month(input_month):
         
     return None
 
-scheduled_years = ['2024', '2025', '2026']
+def view_task():
+    scheduled_years = ['2024', '2025', '2026']
 
-# Read user input for the year
-while True:
-    year = input("SELECT YEAR: ").strip().lower()
-    if year in scheduled_years:
-        break
-    print("Inputted YEAR has not been scheduled!")
-    
-# Read user input for the month
-while True:
-    month = input("SELECT MONTH: ").strip().lower()
-    month = convert_month(month) # convert input month to the correct month key
-    if month is not None:
-        break
-    print("Inputted MONTH is not a valid month!")
+    # Read user input for the year
+    while True:
+        year = input("SELECT YEAR: ").strip().lower()
+        if year in scheduled_years:
+            break
+        print("Inputted YEAR has not been scheduled!")
+        
+    # Read user input for the month
+    while True:
+        month = input("SELECT MONTH: ").strip().lower()
+        month = convert_month(month) # convert input month to the correct month key
+        if month is not None:
+            break
+        print("Inputted MONTH is not a valid month!")
 
-# Loop through selected schedule
-file = open(year + '/' + month + '.txt', 'r')
-while True:
-    schedule = file.readline().rstrip('\n')
-    if not schedule:
-        break
-    print(schedule)
+    # Loop through selected schedule
+    file = open(year + '/' + month + '.txt', 'r')
+    while True:
+        schedule = file.readline().rstrip('\n')
+        if not schedule:
+            break
+        print(schedule)
 
 
-file.close()
+    file.close()
