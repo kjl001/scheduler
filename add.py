@@ -59,6 +59,15 @@ while True:
 
     break
 
+while True:
+    task = input("INPUT TASK: ")
+
+    if len(task) <= 0:
+        print("Please input a task.")
+        continue
+    else:
+        break
+
 if date < 10:
     date = '0' + str(date)
 else:
@@ -66,24 +75,32 @@ else:
 
 # Open schedule and add task at date for specified year and month
 file = open(year + '/' + month + '.txt', 'r')
-while True:
-    schedule = file.readline().rstrip('\n')
-    if not schedule:
-        break
-    
-    # Check for date marker and compare
-    if schedule.startswith('#'):
-        if (month == schedule[1:4].lower()) and (date == schedule[5:7]) and (year == schedule[8:12]):
-            print(schedule)
-            while True:
-                schedule = file.readline().rstrip('\n')
-                if not schedule:
-                    break
-                if schedule.startswith('#'):
-                    break
-                print(schedule)
-        break
+schedule = []
+with open(year + '/' + month + '.txt', 'r') as file:
+    schedule = file.readlines()
 
+index = 0
+found = False
+for line in schedule:
+    if line.startswith('#'):
+        if found:
+            break
 
+        # Found the correct date
+        if date == line[5:7]:
+            found = True
+        # Passed wanted date
+        elif int(date) < int(line[5:7]):
+            found = True
+            task = "#" + month.upper() + " " + date + " " + year + "\n" + task + "\n"
+            break
+    index += 1
 
-file.close()
+# End of file, not found date
+if not found:
+    task = "\n#" + month.upper() + " " + date + " " + year + "\n" + task
+
+schedule.insert(index, task)
+
+with open(year + '/' + month + '.txt', 'w') as file:
+    file.writelines(schedule)
