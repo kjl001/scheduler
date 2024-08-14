@@ -18,6 +18,7 @@ def add_task():
             break
         print("Inputted MONTH is not a valid month!")
 
+    # Read user input for the date
     while True:
         date = input("SELECT DATE: ").strip().lower()
 
@@ -40,6 +41,7 @@ def add_task():
 
         break
 
+    # Read for task to add
     while True:
         task = input("INPUT TASK: ")
 
@@ -49,6 +51,7 @@ def add_task():
         else:
             break
 
+    # Make single digit dates into double digits
     if date < 10:
         date = '0' + str(date)
     else:
@@ -59,6 +62,7 @@ def add_task():
     with open(year + '/' + month + '.txt', 'r') as file:
         schedule = file.readlines()
 
+    # Start finding the date to add to
     index = 0
     found = False
     for line in schedule:
@@ -82,6 +86,7 @@ def add_task():
 
     schedule.insert(index, task)
 
+    # Update file with new tasks
     with open(year + '/' + month + '.txt', 'w') as file:
         file.writelines(schedule)
 

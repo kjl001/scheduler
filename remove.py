@@ -40,42 +40,55 @@ def remove_task():
 
         break
 
+    # Make single digit dates into double digits
     if date < 10:
         date = '0' + str(date)
     else:
         date = str(date)
 
+    # Put schedule into a list
     schedule = []
     with open(year + '/' + month + '.txt', 'r') as file:
         schedule = file.readlines()
 
+    # Start finding the date to remove from
     index = 0
     start_index = 0
     found = False
     for line in schedule:
+        # Found a date line or end of file
         if line.startswith('#') or index == len(schedule)-1:
             if index == len(schedule)-1:
                 index += 1
+            # Date has been found
             if found:
                 print("\nHere are the tasks at your selected date:")
                 for task_num in range(start_index, index):
                     print(schedule[task_num].rstrip('\n'))
                 print("")
 
+                # Wait for user input to remove task
                 while True:
                     remove = input("Input task number to remove or [0] to exit: ")
+                    # Improper number inputted
                     if (not remove.isnumeric()) or  int(remove) >= (index - start_index) or int(remove) < 0:
                         print("Please input a proper task number.")
                         continue
+                    # Exit number
                     elif int(remove) == 0:
                         break
+                    # Proper number inputted, remove task
                     else:
                         del schedule[start_index + int(remove)]
                         index -= 1
+                        
+                        # All tasks have been removed
                         if index - start_index <= 1:
                             del schedule[start_index + int(remove)-1]
                             print("All tasks removed!")
                             break
+
+                        # Print updated tasks
                         print("\nTask removed. Here are the updated tasks:")
                         for task_num in range(start_index, index):
                             print(schedule[task_num].rstrip('\n'))
@@ -90,6 +103,7 @@ def remove_task():
 
         index += 1
 
+    # Update file with new tasks
     with open(year + '/' + month + '.txt', 'w') as file:
         file.writelines(schedule)
     
