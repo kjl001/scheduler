@@ -20,10 +20,11 @@ def view_task():
 
     # Loop through selected schedule
     with open(year + '/' + month + '.txt', 'r') as file:
+        print("")
         while True:
             schedule = file.readline().rstrip('\n')
             if not schedule:
                 break
             print(schedule)
 
-    print("Returning to menu...")
+    print("\nReturning to menu...")

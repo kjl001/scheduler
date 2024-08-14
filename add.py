@@ -85,4 +85,4 @@ def add_task():
     with open(year + '/' + month + '.txt', 'w') as file:
         file.writelines(schedule)
 
-    print("Returning to menu...")
+    print("\nReturning to menu...")
