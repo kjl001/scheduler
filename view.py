@@ -25,3 +25,5 @@ def view_task():
             if not schedule:
                 break
             print(schedule)
+
+    print("Returning to menu...")

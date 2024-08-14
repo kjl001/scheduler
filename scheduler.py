@@ -8,6 +8,7 @@
 
 import add as a
 import view as v
+import remove as r
 
 while True:
     option = input("Do you want to [1] ADD a task; [2] VIEW a task; [3] REMOVE a task; [4] EXIT?: ").strip().lower()
@@ -17,7 +18,7 @@ while True:
         case '2' | 'view':
             v.view_task()
         case '3' | 'remove':
-            print("REMOVE")
+            r.remove_task()
         case '4' | 'exit':
             print("Exiting...")
             exit()

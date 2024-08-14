@@ -1,6 +1,5 @@
 #AUG 09 2024
 Do this one thing
-Do this other thing
 #AUG 10 2024
 Do this one thing
 DO this second thing
@@ -9,4 +8,3 @@ Do this other thing right now
 Finish the add function for scheduler.
 #AUG 14 2024
 One thing only
-TESTINGYIPEE

@@ -55,7 +55,6 @@ def add_task():
         date = str(date)
 
     # Open schedule and add task at date for specified year and month
-    file = open(year + '/' + month + '.txt', 'r')
     schedule = []
     with open(year + '/' + month + '.txt', 'r') as file:
         schedule = file.readlines()
@@ -85,3 +84,5 @@ def add_task():
 
     with open(year + '/' + month + '.txt', 'w') as file:
         file.writelines(schedule)
+
+    print("Returning to menu...")
